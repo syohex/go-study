@@ -63,7 +63,7 @@ func _main() int {
 
 	c.OnHTML("a[target]", func(e *colly.HTMLElement) {
 		target := e.Attr("target")
-		if d.Image != "" && target == "_package" {
+		if d.Image == "" && target == "_package" {
 			d.Image = e.Attr("href")
 		}
 	})
