@@ -36,13 +36,18 @@ func _main() int {
 		return 1
 	}
 
+	url := os.Args[1]
+	if pos := strings.LastIndex(url, "?"); pos != -1 {
+		// strip query string
+		url = url[:pos]
+	}
+
 	t, err := template.New("test").Parse(htmlTemplate)
 	if err != nil {
 		fmt.Println(err)
 		return 1
 	}
 
-	url := os.Args[1]
 	c := colly.NewCollector()
 
 	var cookies []*http.Cookie
